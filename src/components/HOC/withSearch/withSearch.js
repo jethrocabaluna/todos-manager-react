@@ -20,7 +20,7 @@ const withSearch = (WrappedComponent) => {
       return (
         <div>
           <div className="search-component">
-            <input type="text" onChange={this.handleSearch} />
+            <input type="text" onChange={this.handleSearch} placeholder="Search todo..." />
           </div>
           <WrappedComponent searchTerm={this.state.searchTerm} {...this.props} />
         </div>

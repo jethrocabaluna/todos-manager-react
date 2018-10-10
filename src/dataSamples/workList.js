@@ -6,13 +6,13 @@ const workList = [
     "completed": true
   },
   {
-    "userId": 2,
+    "userId": 1,
     "id": 2,
     "title": "work 2",
     "completed": false
   },
   {
-    "userId": 3,
+    "userId": 1,
     "id": 3,
     "title": "work 3",
     "completed": false
