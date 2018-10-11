@@ -1,0 +1,23 @@
+@import '../../styles/abstracts/variables';
+
+:global(.search-highlight) {
+  color: $red;
+}
+
+.todo-list {
+  background-color: $primary;
+  border: 5px solid $red;
+  padding: 10px;
+  margin: 20px;
+  margin-top: 0;
+
+  &__name {
+    color: $red;
+  }
+
+  &__items {
+    box-shadow: 0 0 10px $white;
+    padding: 10px;
+    list-style-position: inside;
+  }
+}

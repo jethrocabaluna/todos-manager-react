@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: ["regenerator-runtime/runtime", "./src/index.js"],
@@ -13,8 +14,13 @@ module.exports = {
         options: { presets: ["@babel/env"] }
       },
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        test: /\.scss$/,
+        use: [
+          "style-loader", 
+          "css-loader?importLoader=1&modules&localIdentName=[path]___[name]__[local]___[hash:base64:5]",
+          "sass-loader"
+        ]
+        // loader: ExtractTextPlugin.extract("css")
       }
     ]
   },
@@ -30,5 +36,8 @@ module.exports = {
     publicPath: "http://localhost:3000/dist/",
     hotOnly: true
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+    // new ExtractTextPlugin("styles.css")
+  ]
 };

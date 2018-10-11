@@ -1,0 +1,43 @@
+@import '../../styles/abstracts/variables';
+
+.todo-list__item {
+  width: 100%;
+  background-color: $light-gray;
+  color: $primary;
+  font-size: 20px;
+  padding: 5px;
+  margin: 3px;
+  box-sizing: border-box;
+
+  &__input {
+    width: 100%;
+    font-size: 20px;
+  }
+
+  &__form {
+    width: 500px;
+    display: inline-block;
+  }
+
+  &__status {
+    width: 20px;
+    height: 20px;
+    float: right;
+  }
+
+  &__delete {
+    color: $red;
+    background-color: $black;
+    float: right;
+    font-size: 20px;
+    padding: 0 3px;
+  }
+
+  &__edit {
+    background-color: $red;
+    color: $black;
+    float: right;
+    font-size: 20px;
+    padding: 0 5px;
+  }
+}

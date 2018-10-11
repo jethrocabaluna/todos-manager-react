@@ -6,7 +6,7 @@ import AddItem from '../AddItem/AddItem';
 import withSearch from '../HOC/withSearch/withSearch';
 import { fetchData } from '../../services/apiService';
 
-import './List.css';
+import './List.scss';
 
 class List extends React.Component {
   static propTypes = {
@@ -39,7 +39,7 @@ class List extends React.Component {
     if (fetchUrl && !apiData) {
       fetchData(fetchUrl)
         .then(data => {
-          const listItems = data.length > 20 ? data.slice(0, 20) : data;
+          const listItems = data.length > 6 ? data.slice(0, 6) : data;
           this.setState({ listItems });
         });
     } else if (apiData && !fetchUrl) {
@@ -122,10 +122,10 @@ class List extends React.Component {
   render () {
     const { listName, searchTerm } = this.props;
     return (
-      <div className="todo-list">
-        <h1 className="todo-list__name">{listName}</h1>
+      <div styleName="todo-list">
+        <h1 styleName="todo-list__name">{listName}</h1>
         <AddItem addTodo={this.addTodo} />
-        <ol className="todo-list__items">
+        <ol styleName="todo-list__items">
           {
             this.state.listItems.filter(item => item.title.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0).map(item => (
               <Item key={item.id} itemId={item.id} isCompleted={item.completed} title={this.showMatches(item.title, searchTerm)} toggleStatus={this.toggleStatus} removeTodo={ this.removeTodo } editTodo={ this.editTodo } onEdit={ item === this.state.editing.item } updateTodo={ this.updateTodo } />

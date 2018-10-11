@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './withSearch.scss';
+
 const withSearch = (WrappedComponent) => {
   return class extends React.Component {
     state = {
@@ -19,8 +21,8 @@ const withSearch = (WrappedComponent) => {
     render() {
       return (
         <div>
-          <div className="search-component">
-            <input type="text" onChange={this.handleSearch} placeholder="Search todo..." />
+          <div styleName="search-component">
+            <input styleName="search-component__input" type="text" onChange={this.handleSearch} placeholder="Search todo..." />
           </div>
           <WrappedComponent searchTerm={this.state.searchTerm} {...this.props} />
         </div>

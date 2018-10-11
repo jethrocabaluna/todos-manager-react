@@ -1,0 +1,18 @@
+@import '../../../styles/abstracts/variables';
+
+.search-component {
+  width: 50%;
+  box-shadow: $primary;
+  margin-left: 20px;
+  margin-top: 20px;
+  border: 7px solid $red;
+
+  &__input {
+    background-color: $white;
+    color: $red;
+    font-size: 16px;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

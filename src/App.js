@@ -5,7 +5,7 @@ import Header from './components/Header/Header';
 import List from './components/List/List';
 import { listAPIs } from './services/apiService';
 
-import './App.css';
+import './App.scss';
 
 class App extends React.Component {
   constructor() {
