@@ -25,7 +25,7 @@ const Item = (props) => {
       { listItem }
       <button styleName="todo-list__item__delete" onClick={() => props.removeTodo(props.itemId)}>X</button>
       <button styleName="todo-list__item__edit" onClick={() => props.editTodo(props.itemId)}>Edit</button>
-      <input styleName="todo-list__item__status" type="checkbox" checked={ props.isCompleted } onChange={ () => props.toggleStatus(props.itemId) } />
+      <button styleName={ props.isCompleted ? "todo-list__item__status todo-list__item__status--done" : "todo-list__item__status todo-list__item__status--notdone" } onClick={ () => props.toggleStatus(props.itemId) }>{ props.isCompleted ? "Done" : "Not Done" }</button>
       <Comments />
     </li>
   )

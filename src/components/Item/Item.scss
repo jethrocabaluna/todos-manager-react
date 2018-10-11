@@ -20,9 +20,18 @@
   }
 
   &__status {
-    width: 20px;
-    height: 20px;
+    font-size: 20px;
     float: right;
+    color: $white;
+    padding: 0 5px;
+
+    &--done {
+      background-color: $green;
+    }
+
+    &--notdone {
+      background-color: $red;
+    }
   }
 
   &__delete {
@@ -34,8 +43,8 @@
   }
 
   &__edit {
-    background-color: $red;
-    color: $black;
+    background-color: $yellow;
+    color: $white;
     float: right;
     font-size: 20px;
     padding: 0 5px;
