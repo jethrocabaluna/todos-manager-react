@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Comments from '../Comments/Comments';
+
 import './Item.scss';
 
 const Item = (props) => {
@@ -24,6 +26,7 @@ const Item = (props) => {
       <button styleName="todo-list__item__delete" onClick={() => props.removeTodo(props.itemId)}>X</button>
       <button styleName="todo-list__item__edit" onClick={() => props.editTodo(props.itemId)}>Edit</button>
       <input styleName="todo-list__item__status" type="checkbox" checked={ props.isCompleted } onChange={ () => props.toggleStatus(props.itemId) } />
+      <Comments />
     </li>
   )
 }

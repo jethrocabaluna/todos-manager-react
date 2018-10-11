@@ -1,11 +1,14 @@
 @import '../../../styles/abstracts/variables';
 
-.search-component {
+.todo-search-wrapper {
   width: 50%;
-  box-shadow: $primary;
-  margin-left: 20px;
-  margin-top: 20px;
-  border: 7px solid $red;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.search-component {
+  margin: 20px 20px 0;
+  border: 3px solid $red;
 
   &__input {
     background-color: $white;

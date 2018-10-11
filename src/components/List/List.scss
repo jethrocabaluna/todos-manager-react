@@ -1,9 +1,5 @@
 @import '../../styles/abstracts/variables';
 
-:global(.search-highlight) {
-  color: $red;
-}
-
 .todo-list {
   background-color: $primary;
   border: 5px solid $red;

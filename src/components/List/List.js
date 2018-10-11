@@ -48,16 +48,6 @@ class List extends React.Component {
     }
   }
 
-  showMatches(text, searchText) {
-    if (searchText !== '') {
-      const re = new RegExp(searchText, "ig");
-      const matches = text.match(re);
-      const styled = text.replace(re, '<span class="search-highlight">' + searchText + '</span>');
-      return {__html: styled};
-    }
-    return {__html: text};
-  }
-
   toggleStatus(itemId) {
     const listItems = this.state.listItems.slice();
     const itemIndex = listItems.indexOf(listItems.find(item => {
@@ -120,7 +110,7 @@ class List extends React.Component {
   }
 
   render () {
-    const { listName, searchTerm } = this.props;
+    const { listName, searchTerm, showMatches } = this.props;
     return (
       <div styleName="todo-list">
         <h1 styleName="todo-list__name">{listName}</h1>
@@ -128,7 +118,7 @@ class List extends React.Component {
         <ol styleName="todo-list__items">
           {
             this.state.listItems.filter(item => item.title.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0).map(item => (
-              <Item key={item.id} itemId={item.id} isCompleted={item.completed} title={this.showMatches(item.title, searchTerm)} toggleStatus={this.toggleStatus} removeTodo={ this.removeTodo } editTodo={ this.editTodo } onEdit={ item === this.state.editing.item } updateTodo={ this.updateTodo } />
+              <Item key={item.id} itemId={item.id} isCompleted={item.completed} title={showMatches(item.title, searchTerm)} toggleStatus={this.toggleStatus} removeTodo={ this.removeTodo } editTodo={ this.editTodo } onEdit={ item === this.state.editing.item } updateTodo={ this.updateTodo } />
             ))
           }
         </ol>

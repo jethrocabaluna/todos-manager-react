@@ -1,0 +1,24 @@
+@import '../../styles/abstracts/variables';
+
+.comments {
+  font-size: 14px;
+  list-style: none;
+
+  &__item {
+    background-color: $white;
+    margin: 5px 0;
+
+    &__name {
+      font-weight: bold;
+    }
+
+    &__email {
+      font-style: italic;
+      font-weight: 100;
+    }
+
+    &__body {
+      color: $dark-gray;
+    }
+  }
+}
