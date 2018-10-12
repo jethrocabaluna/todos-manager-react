@@ -31,7 +31,8 @@ class List extends React.Component {
     editing: {
       isTrue: false,
       item: {}
-    }
+    },
+    withSearchedComment: []
   }
 
   updateList() {
@@ -105,12 +106,30 @@ class List extends React.Component {
     });
   }
 
+  // updateGlobalSearch = (items) => {
+  //   const withSearchedComment = this.state.withSearchedComment.slice();
+  //   // withSearchedComment.concat(items);
+  //   items.forEach(itemId => {
+  //     const itemIndex = this.state.listItems.indexOf(this.state.listItems.find(item => {
+  //       return item.id === itemId;
+  //     }));
+  //     withSearchedComment.push(this.state.listItems[itemIndex]);
+  //   })
+    
+  //   this.setState({ withSearchedComment });
+  // }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return !nextState.withSearchedComment.length > 0;
+  // }
+
   componentDidMount() {
     this.updateList();
   }
 
   render () {
-    const { listName, searchTerm, showMatches } = this.props;
+    const { listName, showMatches, globalSearchTerm } = this.props;
+    const searchTerm = globalSearchTerm !== '' ? globalSearchTerm : this.props.searchTerm;
     return (
       <div styleName="todo-list">
         <h1 styleName="todo-list__name">{listName}</h1>
@@ -118,7 +137,7 @@ class List extends React.Component {
         <ol styleName="todo-list__items">
           {
             this.state.listItems.filter(item => item.title.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0).map(item => (
-              <Item key={item.id} itemId={item.id} isCompleted={item.completed} title={showMatches(item.title, searchTerm)} toggleStatus={this.toggleStatus} removeTodo={ this.removeTodo } editTodo={ this.editTodo } onEdit={ item === this.state.editing.item } updateTodo={ this.updateTodo } />
+              <Item key={item.id} globalSearchTerm={globalSearchTerm} itemId={item.id} isCompleted={item.completed} title={showMatches(item.title, searchTerm)} toggleStatus={this.toggleStatus} removeTodo={ this.removeTodo } editTodo={ this.editTodo } onEdit={ item === this.state.editing.item } updateTodo={ this.updateTodo } updateGlobalSearch={ this.updateGlobalSearch } />
             ))
           }
         </ol>

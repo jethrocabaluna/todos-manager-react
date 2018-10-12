@@ -4,7 +4,8 @@ import withSearch from '../HOC/withSearch/withSearch';
 import './Comments.scss';
 
 const Comments = (props) => {
-  const { searchTerm, showMatches } = props;
+  const { globalSearchTerm, showMatches, updateGlobalSearch, itemId } = props;
+  const searchTerm = globalSearchTerm !== '' ? globalSearchTerm : props.searchTerm
   const commentsSample = [
     {
       "postId": 1,
@@ -35,6 +36,18 @@ const Comments = (props) => {
       "body": "non et atque\noccaecati deserunt quas accusantium unde odit nobis qui voluptatem\nquia voluptas consequuntur itaque dolor\net qui rerum deleniti ut occaecati"
     }
   ];
+
+  // function getSearchedComments() {
+  //   const withSearchedComments = [];
+  //   commentsSample.filter(comment => `${comment.name} ${comment.email} ${comment.body}`.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0).map(() => {
+  //     if (withSearchedComments.indexOf(itemId) === -1) {
+  //       withSearchedComments.push(itemId);
+  //     }
+  //   });
+  //   updateGlobalSearch(withSearchedComments);
+  // }
+
+  // getSearchedComments();
 
   return (
     <React.Fragment>

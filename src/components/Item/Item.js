@@ -26,7 +26,7 @@ const Item = (props) => {
       <button styleName="todo-list__item__delete" onClick={() => props.removeTodo(props.itemId)}>X</button>
       <button styleName="todo-list__item__edit" onClick={() => props.editTodo(props.itemId)}>Edit</button>
       <button styleName={ props.isCompleted ? "todo-list__item__status todo-list__item__status--done" : "todo-list__item__status todo-list__item__status--notdone" } onClick={ () => props.toggleStatus(props.itemId) }>{ props.isCompleted ? "Done" : "Not Done" }</button>
-      <Comments />
+      <Comments globalSearchTerm={ props.globalSearchTerm } updateGlobalSearch={ props.updateGlobalSearch } itemId={ props.itemId } />
     </li>
   )
 }
