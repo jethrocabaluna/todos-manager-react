@@ -5,6 +5,7 @@ import Item from '../Item/Item';
 import AddItem from '../AddItem/AddItem';
 import withSearch from '../HOC/withSearch/withSearch';
 import { fetchData } from '../../services/apiService';
+import commentsList from '../../dataSamples/commentsList';
 
 import './List.scss';
 
@@ -41,6 +42,9 @@ class List extends React.Component {
       fetchData(fetchUrl)
         .then(data => {
           const listItems = data.length > 6 ? data.slice(0, 6) : data;
+          listItems.map(item => {
+            item.comments = commentsList;
+          });
           this.setState({ listItems });
         });
     } else if (apiData && !fetchUrl) {
@@ -106,22 +110,13 @@ class List extends React.Component {
     });
   }
 
-  // updateGlobalSearch = (items) => {
-  //   const withSearchedComment = this.state.withSearchedComment.slice();
-  //   // withSearchedComment.concat(items);
-  //   items.forEach(itemId => {
-  //     const itemIndex = this.state.listItems.indexOf(this.state.listItems.find(item => {
-  //       return item.id === itemId;
-  //     }));
-  //     withSearchedComment.push(this.state.listItems[itemIndex]);
-  //   })
-    
-  //   this.setState({ withSearchedComment });
-  // }
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return !nextState.withSearchedComment.length > 0;
-  // }
+  getCommentTexts(comments) {
+    let text = '';
+    comments.forEach(comment => {
+      text += `${comment.name} ${comment.email} ${comment.body}`;
+    });
+    return text;
+  }
 
   componentDidMount() {
     this.updateList();
@@ -133,11 +128,26 @@ class List extends React.Component {
     return (
       <div styleName="todo-list">
         <h1 styleName="todo-list__name">{listName}</h1>
-        <AddItem addTodo={this.addTodo} />
+        <AddItem 
+          addTodo={this.addTodo} />
         <ol styleName="todo-list__items">
           {
-            this.state.listItems.filter(item => item.title.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0).map(item => (
-              <Item key={item.id} globalSearchTerm={globalSearchTerm} itemId={item.id} isCompleted={item.completed} title={showMatches(item.title, searchTerm)} toggleStatus={this.toggleStatus} removeTodo={ this.removeTodo } editTodo={ this.editTodo } onEdit={ item === this.state.editing.item } updateTodo={ this.updateTodo } updateGlobalSearch={ this.updateGlobalSearch } />
+            this.state.listItems.filter(item => (
+              globalSearchTerm !== '' ? 
+              `${item.title} ${item.comments ? this.getCommentTexts(item.comments) : ''}` : 
+              item.title).toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0).map(item => (
+              <Item 
+                key={item.id} 
+                globalSearchTerm={globalSearchTerm} 
+                itemId={item.id} 
+                isCompleted={item.completed} 
+                title={showMatches(item.title, searchTerm)} 
+                toggleStatus={this.toggleStatus} 
+                removeTodo={ this.removeTodo } 
+                editTodo={ this.editTodo } 
+                onEdit={ item === this.state.editing.item } 
+                updateTodo={ this.updateTodo } 
+                comments={ item.comments } />
             ))
           }
         </ol>

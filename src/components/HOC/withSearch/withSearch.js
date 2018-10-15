@@ -34,7 +34,10 @@ const withSearch = (WrappedComponent) => {
           <div styleName="search-component">
             <input styleName="search-component__input" type="text" onChange={this.handleSearch} placeholder={this.props.listName ? "Search Todo" : "Search..."} />
           </div>
-          <WrappedComponent searchTerm={this.state.searchTerm} showMatches={ this.showMatches } {...this.props} />
+          <WrappedComponent 
+            searchTerm={this.state.searchTerm} 
+            showMatches={ this.showMatches } 
+            {...this.props} />
         </div>
       )
     }

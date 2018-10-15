@@ -34,17 +34,17 @@ class App extends React.Component {
             {
               searchTerm => (
                 this.state.arrayLists.map(list => (
-                  <List key={list.name} globalSearchTerm={searchTerm} listName={list.name} fetchUrl={list.apiURL} apiData={list.apiData} />
+                  <List 
+                    key={list.name} 
+                    globalSearchTerm={searchTerm} 
+                    listName={list.name} 
+                    fetchUrl={list.apiURL} 
+                    apiData={list.apiData} />
                 ))
               )
             }
           </GlobalSearchContext.Consumer>
         </GlobalSearchProvider>
-        {/* {
-          this.state.arrayLists.map(list => (
-            <List key={list.name} listName={list.name} fetchUrl={list.apiURL} apiData={list.apiData} />
-          ))
-        } */}
       </div>
     )
   }
